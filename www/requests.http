@@ -1,0 +1,137 @@
+@HOST = http://0.0.0.0:3000
+
+
+# List Nearby Places
+GET {{HOST}}/api/v1/places?lat=52.5228&lon=13.4124&search=hotels
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# List Hotels
+GET {{HOST}}/api/v1/hotels?lat=52.5228&lon=13.4124
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Find Hotel by ID
+GET {{HOST}}/api/v1/hotels/60e71ec03d1db68842830e3b
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# List Hotel bookings
+GET {{HOST}}/api/v1/hotels/60e71ec03d1db68842830e3b/bookings
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Create Hotels
+POST {{HOST}}/api/v1/hotels
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+{
+  "id": "here:pds:place:276u33dc-7f2aef1e8eee4e7ead301c71a7be3713",
+  "title": "Park Inn",
+  "address": {
+    "label": "Park Inn, Alexanderplatz 7, 10178 Berlin, Deutschland",
+    "countryCode": "DEU",
+    "countryName": "Deutschland",
+    "stateCode": "BE",
+    "state": "Berlin",
+    "countyCode": "B",
+    "county": "Berlin",
+    "city": "Berlin",
+    "district": "Mitte",
+    "street": "Alexanderplatz",
+    "postalCode": "10178",
+    "houseNumber": "7"
+  },
+  "contacts": [ { "phone": [ { "value": "+493023890" } ] } ],
+  "openingHours": [
+    {
+      "text": [ "Mon-Sun: 00:00 - 24:00" ],
+      "isOpen": true,
+      "structured": [
+        {
+          "start": "T000000",
+          "duration": "PT24H00M",
+          "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+        }
+      ]
+    }
+  ],
+  "position": {
+    "lat": 52.52255,
+    "lng": 13.4128
+  }
+}
+
+###
+
+# List all Guests
+GET {{HOST}}/api/v1/guests
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Find Guest By ID
+GET {{HOST}}/api/v1/guests/60e71edd3d1db68842830e41
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Create Guest
+POST {{HOST}}/api/v1/guests
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+{
+  "title": "Dr.",
+  "firstName": "John",
+  "lastName": "Johnsson",
+  "address": {
+    "country": "Germany"
+  },
+  "contacts": {
+    "email": "john.johnsson@email.com",
+    "celphone": "+1 123 456789"
+  }
+}
+###
+
+# List all Bookings
+GET {{HOST}}/api/v1/bookings
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Find a Booking
+GET {{HOST}}/api/v1/bookings/60e71efb3d1db68842830e46
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Create a Booking
+POST {{HOST}}/api/v1/bookings
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+{
+  "hotelId": "60e71ec03d1db68842830e3b",
+  "guestId": "60e71edd3d1db68842830e41",
+  "checkInDate": "2021-07-08T11:00:00.000Z",
+  "checkOutDate": "2021-07-12T11:00:00.000Z",
+  "amount": 100.10,
+  "stars": 5
+}
+
+###
