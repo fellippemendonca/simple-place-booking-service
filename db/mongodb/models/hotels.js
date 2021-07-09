@@ -58,6 +58,26 @@ async function create(payload) {
   return null;
 };
 
+async function createMany(hotels) {
+  console.log('SO FAR SO GOOD');
+  const result = [];
+  for (let hotel of hotels) {
+    try {
+      const found = await Hotels.findOne({ id: hotel.id }).exec();
+      if (!found) {
+        const createdHotel = await create(hotel);
+        result.push(createdHotel);
+      } else {
+        result.push(`Hotel already exists: ${hotel.id}`);
+      }
+    } catch(error) {
+      console.log(error.stack);
+      result.push(error.message);
+    }
+  }
+  return result;
+};
+
 async function update(payload) {
   try {
     const { _id } = payload;
@@ -99,6 +119,7 @@ module.exports = {
   listAll,
   findOne,
   create,
+  createMany,
   update,
   patch,
   remove

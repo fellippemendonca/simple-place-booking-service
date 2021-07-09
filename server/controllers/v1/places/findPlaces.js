@@ -8,7 +8,10 @@ module.exports = (ctx) => {
   return async (req, res) => {
     const { headers, params, query, body } = req;
     try {
-      const { lat, lon, search } = query;
+      const { geoLocation, search } = query;
+      const splitGeo = geoLocation.split(',');
+      const lat = splitGeo[0];
+      const lon = splitGeo[1];
       const places = await placesFinder.getLocation({ lat, lon, search });
       return res.status(200).send(places);
     } catch (error) {

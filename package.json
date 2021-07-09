@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "mocha"
+    "start": "node app.js"
   },
   "dependencies": {
     "axios": "^0.21.1",

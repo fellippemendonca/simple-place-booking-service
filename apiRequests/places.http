@@ -1,0 +1,10 @@
+# @HOST = http://0.0.0.0:3000
+@HOST = http://box-cn60.ddns.net:80
+
+
+# List Nearby Places
+GET {{HOST}}/api/v1/places?geoLocation=52.5228,13.4124&search=hotels
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###

@@ -7,7 +7,9 @@ const Schema = mongoose.Schema;
 
 const BookingsSchema = new Schema({
   hotelId: { type: ObjectId, required: true },
-  guestId: { type: ObjectId, required: true },
+  guestName: { type: String, required: true },
+  guestEmail: { type: String, required: true },
+  guestPhone: { type: String, required: true },
   checkInDate: { type: Date, required: true },
   checkOutDate: { type: Date, required: true },
   amount: { type: Number, required: true },
@@ -49,9 +51,19 @@ async function findByHotelId(hotelId) {
 
 async function create(payload) {
   try {
-    const booking = new Bookings(payload);
-    const result = await booking.save();
-    return result;
+    const checkDatesQuery = {
+      hotelId: payload.hotelId,
+      $and: [
+        { checkInDate: { $gte: payload.checkInDate } },
+        { checkOutDate: { $lte: payload.checkOutDate } }
+      ]
+    };
+    const checkDates = await Bookings.find(checkDatesQuery).exec();
+    if (checkDates.length < 10) {
+      const booking = new Bookings(payload);
+      const result = await booking.save();
+      return result;
+    }
   } catch(error) {
     console.log(error.message);
   }

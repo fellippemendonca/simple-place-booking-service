@@ -1,0 +1,35 @@
+# @HOST = http://0.0.0.0:3000
+@HOST = http://box-cn60.ddns.net:80
+
+
+# List all Bookings
+GET {{HOST}}/api/v1/bookings
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Find a Booking
+GET {{HOST}}/api/v1/bookings/60e8381e06e973b1975d3854
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Create a Booking
+POST {{HOST}}/api/v1/bookings
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+{
+  "hotelId": "60e83cb3d02356ba74c04ae0",
+  "guestName": "John Johnson",
+  "guestEmail": "john.johnson@email.com",
+  "guestPhone": "+1 234 567890",
+  "checkInDate": "2021-07-08T11:00:00.000Z",
+  "checkOutDate": "2021-07-12T11:00:00.000Z",
+  "amount": 100.10,
+  "stars": 5
+}
+
+###

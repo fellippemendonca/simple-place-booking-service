@@ -1,0 +1,35 @@
+# @HOST = http://0.0.0.0:3000
+@HOST = http://box-cn60.ddns.net:80
+
+
+# List Hotels
+GET {{HOST}}/api/v1/hotels?lat=52.5228&lon=13.4124
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Find Hotel by ID
+GET {{HOST}}/api/v1/hotels/60e83cb3d02356ba74c04ae0
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# List Hotel bookings
+GET {{HOST}}/api/v1/hotels/60e83cb3d02356ba74c04ae0/bookings
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+###
+
+# Import Hotels From the GeoLocation
+POST {{HOST}}/api/v1/hotels
+content-type: application/json
+x-auth-token: TEST_TOKEN_123
+
+{
+  "geoLocation": "52.52298,13.40999"
+}
+
+###
